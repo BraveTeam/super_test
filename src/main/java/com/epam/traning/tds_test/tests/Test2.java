@@ -11,6 +11,7 @@ import org.testng.annotations.Test;
 
 import com.epam.traning.tds_test.guice.module.DriverModule;
 import com.epam.traning.tds_test.pages.MainPage;
+import com.epam.traning.tds_test.pages.VideoPage;
 import com.epam.traning.tds_test.utils.DriverUtils;
 import com.google.inject.Inject;
 import com.guice.TestInjector;
@@ -30,8 +31,6 @@ public class Test2 {
 	@Inject
 	protected MainPage mainPage;
 	
-	private String className;
-
 	@BeforeClass(alwaysRun = true)
 	public void injectMembers() {
 		TestInjector.injectMembers(this);
@@ -45,14 +44,9 @@ public class Test2 {
 	}
 
 	@Test
-	public void checkModule(String pageName, String moduleName) {
+	public void watchNowRequest() {
 
-/*		className = moduleService.getModuleClassName(pageName, moduleName);
-
-		if (!moduleService.isModuleExists(pageName, moduleName, driver)) {
-			Assert.assertFalse(moduleService.isModuleRequired(pageName, moduleName),
-					String.format(MessageConstants.NO_MODULE_MESSAGE, moduleName));
-		}*/
+		
 
 	}
 }
