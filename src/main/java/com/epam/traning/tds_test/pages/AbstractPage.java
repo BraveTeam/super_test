@@ -16,9 +16,7 @@ public  abstract class AbstractPage {
     public abstract boolean check();
 
 
-    public boolean isElementPresent(WebElement element){
-        return element.isEnabled();
-    }
+
 
 
 }

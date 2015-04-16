@@ -7,10 +7,5 @@
         </classes>
     </test>
 
-    <test name="Test2" verbose="1">
-        <classes>
-            <class name="com.epam.traning.tds_test.tests.Test2"/>
-        </classes>
-    </test>
 
 </suite>

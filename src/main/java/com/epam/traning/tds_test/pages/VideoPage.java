@@ -2,6 +2,7 @@ package com.epam.traning.tds_test.pages;
 
 import com.epam.traning.tds_test.constants.ProjectConstants;
 import com.epam.traning.tds_test.pages.yandex_elements.CommonPanelBlock;
+import com.epam.traning.tds_test.utils.DriverUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -41,7 +42,7 @@ public class VideoPage extends AbstractPage {
     }
 
     public boolean ChekVideoBlockPresent(){
-        return isElementPresent(video_block);
+        return DriverUtils.isElementPresent(video_block);
     }
 
     public boolean CheckVideoBlockSize(){

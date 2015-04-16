@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import com.common.wait.Sleeper;
 import com.epam.traning.tds_test.constants.CommonConstants;
 import com.epam.traning.tds_test.constants.JSCommands;
+import org.openqa.selenium.WebElement;
 
 public class DriverUtils {
 
@@ -25,5 +26,8 @@ public class DriverUtils {
 		} while ((!status.equals("complete")) && (i <= CommonConstants.DEFAULT_PAGE_LOAD_TIMEOUT));
 	}
 
+	public static boolean isElementPresent(WebElement element){
+		return element.isEnabled();
+	}
 
 }

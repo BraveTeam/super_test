@@ -1,6 +1,5 @@
 package com.epam.traning.tds_test.tests;
 
-import com.epam.traning.tds_test.constants.ProjectConstants;
 import com.epam.traning.tds_test.guice.module.DriverModule;
 import com.epam.traning.tds_test.pages.MainPage;
 import com.epam.traning.tds_test.pages.VideoPage;
@@ -33,14 +32,13 @@ public class Test1 {
         TestInjector.injectMembers(this);
     }
 
-    @BeforeTest(dependsOnMethods ="injectElements" )
+    @BeforeTest
     public void getConnection(){
-        webDriver.get(ProjectConstants.HOME_URL);
-
+       mainPage.openPage();
     }
 
 
-    @Test(dependsOnMethods = "getConnection")
+    @Test()
     public void CheckExistingOfVideoBlock(){
         videoPage = mainPage.goToVideoPage();
         Assert.assertTrue(videoPage.check());
@@ -52,5 +50,4 @@ public class Test1 {
         videoPage.CheckVideoBlockSize();
         Assert.assertTrue( videoPage.CheckVideoBlockSize() , " Size of the VideoBlock doesn't equal to 3");
     }
-
 }
