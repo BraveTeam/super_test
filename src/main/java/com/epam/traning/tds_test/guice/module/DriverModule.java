@@ -24,6 +24,7 @@ public class DriverModule extends AbstractModule {
 		wd.manage().window().maximize();
 		wd.manage().timeouts().pageLoadTimeout(CommonConstants.PAGE_LOAD_WAIT, TimeUnit.SECONDS);
 		wd.manage().timeouts().implicitlyWait(CommonConstants.IMPLICIT_WAIT, TimeUnit.SECONDS);
+		bind(DriverManager.class).toInstance(driverManager);
 		bind(WebDriver.class).toInstance(wd);
 		bind(MainPage.class).toInstance(new MainPage(wd));
 

@@ -11,7 +11,7 @@ public class BrowserFactory {
 
 		if (webDriverFactory.get() == null) {
 
-			webDriverFactory.set(LocalBrowserFactory.createLocalFactory(driverType));
+			webDriverFactory.set(LocalBrowserFactory.createLocalFactory(DriverType.FIREFOX));
 			
 		}
 		return webDriverFactory.get();

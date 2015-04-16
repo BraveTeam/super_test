@@ -1,17 +1,13 @@
 package com.epam.traning.tds_test.tests;
 
-import java.util.List;
-
 import org.openqa.selenium.WebDriver;
-import org.reflections.ReflectionUtils;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import com.epam.traning.tds_test.guice.module.DriverModule;
 import com.epam.traning.tds_test.pages.MainPage;
-import com.epam.traning.tds_test.pages.VideoPage;
+import com.epam.traning.tds_test.pages.WatchNowPage;
 import com.epam.traning.tds_test.utils.DriverUtils;
 import com.google.inject.Inject;
 import com.guice.TestInjector;
@@ -26,9 +22,6 @@ public class Test2 {
 	protected WebDriver driver;
 
 	@Inject
-	protected DriverManager driverManager;
-
-	@Inject
 	protected MainPage mainPage;
 	
 	@BeforeClass(alwaysRun = true)
@@ -37,7 +30,7 @@ public class Test2 {
 	}
 
 	@BeforeClass(alwaysRun = true, dependsOnMethods = "injectMembers")
-	public void setUpTest(String pageName, String filePath) {
+	public void setUpTest() {
 		
 		mainPage.openPage();
 		DriverUtils.waitForPageLoad(driver);
@@ -46,7 +39,8 @@ public class Test2 {
 	@Test
 	public void watchNowRequest() {
 
-		
+		WatchNowPage watchNowPage = mainPage.goToWatchNowPage();
+		Assert.assertTrue(watchNowPage.check(),"WatchNow Page couldn't be identified");
 
 	}
 }
