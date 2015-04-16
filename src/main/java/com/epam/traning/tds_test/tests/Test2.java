@@ -1,10 +1,5 @@
 package com.epam.traning.tds_test.tests;
 
-import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
-
 import com.epam.traning.tds_test.guice.module.DriverModule;
 import com.epam.traning.tds_test.pages.MainPage;
 import com.epam.traning.tds_test.pages.WatchNowPage;
@@ -12,9 +7,11 @@ import com.epam.traning.tds_test.utils.DriverUtils;
 import com.google.inject.Inject;
 import com.guice.TestInjector;
 import com.guice.annotation.Modules;
-import com.selenium.driver.DriverManager;
+import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 
-@Test(groups = { "TDS" })
 @Modules(modules = { DriverModule.class })
 public class Test2 {
 

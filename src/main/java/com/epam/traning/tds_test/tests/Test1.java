@@ -7,16 +7,13 @@ import com.epam.traning.tds_test.utils.DriverUtils;
 import com.google.inject.Inject;
 import com.guice.TestInjector;
 import com.guice.annotation.Modules;
-import com.selenium.driver.DriverManager;
-
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-@Test(groups = { "TDS" })
+
 @Modules(modules = { DriverModule.class})
 public class Test1 {
 
@@ -45,7 +42,7 @@ public class Test1 {
     @Test()
     public void CheckExistingOfVideoBlock(){
         videoPage = mainPage.goToVideoPage();
-        Assert.assertTrue(videoPage.check());
+        DriverUtils.waitForPageLoad(driver);
         Assert.assertTrue( videoPage.ChekVideoBlockPresent() , "VideoBlock doesn't exists" );
     }
 
@@ -54,4 +51,5 @@ public class Test1 {
         videoPage.CheckVideoBlockSize();
         Assert.assertTrue( videoPage.CheckVideoBlockSize() , " Size of the VideoBlock doesn't equal to 3");
     }
+
 }

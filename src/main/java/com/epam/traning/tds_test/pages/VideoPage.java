@@ -10,6 +10,8 @@ import org.openqa.selenium.support.PageFactory;
 import ru.yandex.qatools.htmlelements.annotations.Name;
 import ru.yandex.qatools.htmlelements.element.Button;
 import ru.yandex.qatools.htmlelements.loader.HtmlElementLoader;
+import ru.yandex.qatools.htmlelements.loader.decorator.HtmlElementDecorator;
+
 import java.util.List;
 
 public class VideoPage extends AbstractPage {
@@ -18,13 +20,13 @@ public class VideoPage extends AbstractPage {
 
     public VideoPage(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(driver, this);
+        PageFactory.initElements(new HtmlElementDecorator(driver), this);
         HtmlElementLoader.populatePageObject(this, driver);
 
     }
 
     @Name("Block with videos")
-    @FindBy(xpath = "//div[contains(@class,module ent_m043’)]")
+    @FindBy(xpath = "//div[contains(@class,'module ent_m043')]")
     private WebElement video_block;
 
     @Name("Watch Now button ")
@@ -46,7 +48,7 @@ public class VideoPage extends AbstractPage {
     }
 
     public boolean CheckVideoBlockSize(){
-        return video_block_entity.size()==2;
+        return video_block_entity.size()==3;
     }
 
     public MainPage goToMainPage(){

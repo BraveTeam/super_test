@@ -16,9 +16,15 @@ public class CommonPanelBlock extends HtmlElement {
     @FindBy(className = " full_episodes")
     private Button button_episodes;
 
+
+
+
     @Name("Videos section")
-    @FindBy(className = "//a[@class=' videos']")
+    @FindBy(xpath = "//a[@class=' videos']")
     private Button button_videos;
+
+
+
 
     @Name("Interviews section")
     @FindBy(className = " extended_interviews")
@@ -46,7 +52,7 @@ public class CommonPanelBlock extends HtmlElement {
     private Link button_main_page;
 
 
-    @Name("")
+    @Name("Wotch now Button")
     @FindBy(xpath = "//div[@class='watch-now']")
     private Button button_watch_now;
 
