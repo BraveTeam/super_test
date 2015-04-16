@@ -5,6 +5,7 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.WebDriver;
 
 import com.epam.traning.tds_test.constants.CommonConstants;
+import com.epam.traning.tds_test.pages.MainPage;
 import com.epam.traning.tds_test.runner.BrowserFactory;
 import com.epam.traning.tds_test.runner.cli.FrameworkSettings;
 import com.google.inject.AbstractModule;
@@ -24,6 +25,7 @@ public class DriverModule extends AbstractModule {
 		wd.manage().timeouts().pageLoadTimeout(CommonConstants.PAGE_LOAD_WAIT, TimeUnit.SECONDS);
 		wd.manage().timeouts().implicitlyWait(CommonConstants.IMPLICIT_WAIT, TimeUnit.SECONDS);
 		bind(WebDriver.class).toInstance(wd);
+		bind(MainPage.class).toInstance(new MainPage(wd));
 
 	}
 }
