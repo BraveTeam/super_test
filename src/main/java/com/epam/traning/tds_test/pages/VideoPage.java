@@ -1,5 +1,6 @@
 package com.epam.traning.tds_test.pages;
 
+import com.epam.traning.tds_test.constants.ProjectConstants;
 import com.epam.traning.tds_test.pages.yandex_elements.CommonPanelBlock;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -36,7 +37,7 @@ public class VideoPage extends AbstractPage {
 
     @Override
     public boolean check() {
-            return false;
+        return driver.getCurrentUrl().equals(ProjectConstants.HOME_URL);
     }
 
     public boolean ChekVideoBlockPresent(){

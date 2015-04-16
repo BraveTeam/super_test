@@ -1,5 +1,6 @@
 package com.epam.traning.tds_test.pages;
 
+import com.epam.traning.tds_test.constants.ProjectConstants;
 import org.openqa.selenium.WebDriver;
 
 public class WatchNowPage extends AbstractPage {
@@ -11,6 +12,6 @@ public class WatchNowPage extends AbstractPage {
 
     @Override
     public boolean check() {
-        return false;
+        return driver.getCurrentUrl().equals(ProjectConstants.WATCHNOWPAGE_URL);
     }
 }

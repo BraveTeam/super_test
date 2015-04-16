@@ -14,12 +14,12 @@ public class MainPage  extends AbstractPage{
     public MainPage(WebDriver driver) {
         super(driver);
         HtmlElementLoader.populatePageObject(this, driver);
-
+        check();
     }
 
     @Override
     public boolean check() {
-        return false;
+        return  driver.getCurrentUrl().equals(ProjectConstants.HOME_URL);
     }
 
 	public void openPage(){
@@ -29,6 +29,11 @@ public class MainPage  extends AbstractPage{
     public VideoPage goToVideoPage(){
         commonPanelBlock.clickOnVideos();
         return new VideoPage(driver);
+    }
+
+    public WatchNowPage goToWatchNowPage(){
+        commonPanelBlock.clickOnWatchNow();
+        return new WatchNowPage(driver);
     }
 
 }

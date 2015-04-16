@@ -46,8 +46,17 @@ public class CommonPanelBlock extends HtmlElement {
     private Link button_main_page;
 
 
+    @Name("")
+    @FindBy(xpath = "//div[@class='watch-now']")
+    private Button button_watch_now;
+
+
     public void clickOnVideos(){
         button_videos.click();
+    }
+
+    public void clickOnWatchNow(){
+        button_watch_now.click();
     }
 
     public void clickOnMainPageLink(){
