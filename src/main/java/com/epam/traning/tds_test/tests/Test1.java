@@ -34,9 +34,8 @@ public class Test1 {
 
     @BeforeTest
     public void getConnection(){
-       mainPage.openPage();
+        mainPage.openPage();
     }
-
 
     @Test()
     public void CheckExistingOfVideoBlock(){
