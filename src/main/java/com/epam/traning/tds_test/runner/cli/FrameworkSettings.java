@@ -8,79 +8,59 @@ import com.selenium.driver.DriverType;
 
 public class FrameworkSettings {
 
-	private static FrameworkSettings browserSettings = new FrameworkSettings();
+    private static FrameworkSettings browserSettings = new FrameworkSettings();
 
-	private DriverType driverType;
+    private DriverType driverType;
 
-	private List<ISuite> suites;
+    private List<ISuite> suites;
 
-	private RunOptions option;
+    private String version;
 
-	private String version;
+    private String appiumPort;
 
-	private SiteOptions siteOption;
+    private Boolean rerun;
 
-	private String appiumPort;
+    public List<ISuite> getSuites() {
+	return suites;
+    }
 
-	private Boolean rerun;
+    public void setSuites(List<ISuite> suits) {
+	this.suites = suits;
+    }
 
-	public List<ISuite> getSuites() {
-		return suites;
-	}
+    public Boolean getRerun() {
+	return rerun;
+    }
 
-	public void setSuites(List<ISuite> suits) {
-		this.suites = suits;
-	}
+    public void setRerun(Boolean rerun) {
+	this.rerun = rerun;
+    }
 
-	public Boolean getRerun() {
-		return rerun;
-	}
+    public String getVersion() {
+	return version;
+    }
 
-	public void setRerun(Boolean rerun) {
-		this.rerun = rerun;
-	}
+    public void setVersion(String version) {
+	this.version = version;
+    }
 
-	public String getVersion() {
-		return version;
-	}
+    public static FrameworkSettings getInstance() {
+	return browserSettings;
+    }
 
-	public void setVersion(String version) {
-		this.version = version;
-	}
+    public DriverType getDriverType() {
+	return driverType;
+    }
 
-	public RunOptions getRunOption() {
-		return option;
-	}
+    public void setDriverType(DriverType driverType) {
+	this.driverType = driverType;
+    }
 
-	public void setOption(RunOptions option) {
-		this.option = option;
-	}
+    public String getAppiumPort() {
+	return appiumPort;
+    }
 
-	public static FrameworkSettings getInstance() {
-		return browserSettings;
-	}
-
-	public DriverType getDriverType() {
-		return driverType;
-	}
-
-	public void setDriverType(DriverType driverType) {
-		this.driverType = driverType;
-	}
-
-	public SiteOptions getSites() {
-		return siteOption;
-	}
-
-	public void setSites(SiteOptions siteOption) {
-		this.siteOption = siteOption;
-	}
-
-	public String getAppiumPort() {
-		return appiumPort;
-	}
-
-	public void setAppiumPort(String appiumPort) {
-		this.appiumPort = appiumPort;
-	}
+    public void setAppiumPort(String appiumPort) {
+	this.appiumPort = appiumPort;
+    }
 }

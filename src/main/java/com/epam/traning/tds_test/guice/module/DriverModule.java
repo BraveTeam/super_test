@@ -19,15 +19,20 @@ public class DriverModule extends AbstractModule {
 
 	@Override
 	protected void configure() {
-		driverManager = DriverManager.getInstance(BrowserFactory.getInstance(FrameworkSettings.getInstance().getDriverType()));
+		driverManager = DriverManager.getInstance(BrowserFactory.getInstance(
+				FrameworkSettings.getInstance().getDriverType(), -1));
 		wd = driverManager.getWebDriver();
 		wd.manage().window().maximize();
-		wd.manage().timeouts().pageLoadTimeout(CommonConstants.PAGE_LOAD_WAIT, TimeUnit.SECONDS);
-		wd.manage().timeouts().implicitlyWait(CommonConstants.IMPLICIT_WAIT, TimeUnit.SECONDS);
+		wd.manage()
+				.timeouts()
+				.pageLoadTimeout(CommonConstants.PAGE_LOAD_WAIT,
+						TimeUnit.SECONDS);
+		wd.manage()
+				.timeouts()
+				.implicitlyWait(CommonConstants.IMPLICIT_WAIT, TimeUnit.SECONDS);
 		bind(DriverManager.class).toInstance(driverManager);
 		bind(WebDriver.class).toInstance(wd);
 		bind(MainPage.class).toInstance(new MainPage(wd));
 
 	}
 }
-
