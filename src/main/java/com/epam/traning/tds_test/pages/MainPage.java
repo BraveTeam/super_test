@@ -2,11 +2,11 @@ package com.epam.traning.tds_test.pages;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
-
-import ru.yandex.qatools.htmlelements.loader.HtmlElementLoader;
+import org.openqa.selenium.support.PageFactory;
 
 import com.epam.traning.tds_test.constants.ProjectConstants;
 import com.epam.traning.tds_test.pages.blocks.CommonPanelBlock;
+import com.selenium.loader.decorator.LoggedElementDecorator;
 
 public class MainPage extends AbstractPage {
 
@@ -16,7 +16,7 @@ public class MainPage extends AbstractPage {
 
 	public MainPage(WebDriver driver) {
 		super(driver);
-		HtmlElementLoader.populatePageObject(this, driver);
+		PageFactory.initElements(new LoggedElementDecorator(driver), this);
 		check();
 	}
 

@@ -1,13 +1,13 @@
 package com.epam.traning.tds_test.pages.blocks;
 
 import org.apache.log4j.Logger;
-import org.openqa.selenium.support.FindBy;
 
-import ru.yandex.qatools.htmlelements.annotations.Block;
 import ru.yandex.qatools.htmlelements.annotations.Name;
-import ru.yandex.qatools.htmlelements.element.Button;
 import ru.yandex.qatools.htmlelements.element.HtmlElement;
-import ru.yandex.qatools.htmlelements.element.Link;
+
+import com.selenium.element.Element;
+import com.selenium.page.annotation.Block;
+import com.selenium.page.annotation.FindBy;
 
 @Block(@FindBy(id = "header"))
 public class CommonPanelBlock extends HtmlElement {
@@ -16,39 +16,39 @@ public class CommonPanelBlock extends HtmlElement {
 
 	@Name("Full Episodes section")
 	@FindBy(className = " full_episodes")
-	private Button button_episodes;
+	private Element button_episodes;
 
 	@Name("Videos section")
 	@FindBy(xpath = "//a[@class=' videos']")
-	private Button button_videos;
+	private Element button_videos;
 
 	@Name("Interviews section")
 	@FindBy(className = " extended_interviews")
-	private Button button_interviews;
+	private Element button_interviews;
 
 	@Name("Guests section")
 	@FindBy(className = " guests")
-	private Button button_guests;
+	private Element button_guests;
 
 	@Name("News Team section")
 	@FindBy(className = "  news_team")
-	private Button button_news_team;
+	private Element button_news_team;
 
 	@Name("Podcast section")
 	@FindBy(className = "  podcast")
-	private Button button_podcast;
+	private Element button_podcast;
 
 	@Name("Tickets section")
 	@FindBy(className = " tickets")
-	private Button button_tickets;
+	private Element button_tickets;
 
 	@Name("GoHome section")
 	@FindBy(xpath = "//a[href='http://thedailyshow.cc.com/']")
-	private Link button_main_page;
+	private Element button_main_page;
 
 	@Name("Watch now Button")
 	@FindBy(xpath = "//div[@class='watch-now']")
-	private Button button_watch_now;
+	private Element button_watch_now;
 
 	public void clickOnVideos() {
 		button_videos.click();
