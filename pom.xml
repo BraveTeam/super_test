@@ -21,9 +21,9 @@
 		<jar.version>2.2</jar.version>
 		<assembly.version>2.2-beta-3</assembly.version>
 		
-		<desktopdriver.version>1.0.39</desktopdriver.version>
+		<desktopdriver.version>1.0.60</desktopdriver.version>
 		
-		<selenium.version>2.43.0</selenium.version>
+		<selenium.version>2.45.0</selenium.version>
 		
 		<testng-runner.version>1.0.129</testng-runner.version>
 		<commons-httpclient.version>3.1</commons-httpclient.version>

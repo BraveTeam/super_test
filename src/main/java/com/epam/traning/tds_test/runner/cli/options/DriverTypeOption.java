@@ -4,7 +4,7 @@ import org.apache.commons.cli.Option;
 
 import com.clioption.ICliOption;
 import com.epam.traning.tds_test.runner.cli.FrameworkSettings;
-import com.selenium.driver.DriverType;
+import com.selenium.driver.DriverTypes;
 
 public class DriverTypeOption implements ICliOption {
 
@@ -12,7 +12,7 @@ public class DriverTypeOption implements ICliOption {
 
 	@Override
 	public void parse(String[] strings) {
-		FrameworkSettings.getInstance().setDriverType(DriverType.valueOf(strings[0]));
+		FrameworkSettings.getInstance().setDriverTypes(DriverTypes.valueOf(strings[0]));
 	}
 
 	@Override

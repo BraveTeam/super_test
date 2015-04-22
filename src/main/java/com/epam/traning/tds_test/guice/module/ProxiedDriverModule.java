@@ -35,7 +35,7 @@ public class ProxiedDriverModule extends AbstractModule {
 		abstractProxy = runProxyServer.getProxyServer();
 		bind(AbstractProxy.class).toInstance(abstractProxy);
 
-		driverManager = DriverManager.getInstance(BrowserFactory.getInstance(FrameworkSettings.getInstance().getDriverType(), port));
+		driverManager = DriverManager.getInstance(BrowserFactory.getInstance(FrameworkSettings.getInstance().getDriverTypes(), port));
 
 		wd = driverManager.getWebDriver();
 		wd.manage().window().maximize();

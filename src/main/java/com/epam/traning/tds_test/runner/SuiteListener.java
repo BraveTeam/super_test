@@ -15,7 +15,7 @@ import org.testng.ITestResult;
 import com.epam.traning.tds_test.constants.CommonConstants;
 import com.epam.traning.tds_test.runner.cli.FrameworkSettings;
 import com.selenium.driver.DriverManager;
-import com.selenium.utils.ScreenshotUtils;
+import com.utils.ScreenshotUtils;
 
 public class SuiteListener implements ISuiteListener, ITestListener, IConfigurationListener {
 
@@ -24,7 +24,7 @@ public class SuiteListener implements ISuiteListener, ITestListener, IConfigurat
 	@Override
 	public void onTestFailure(ITestResult result) {
 		ScreenshotUtils.takeResizedScreenshot(
-				DriverManager.getInstance(BrowserFactory.getInstance(FrameworkSettings.getInstance().getDriverType(), -1)).getWebDriver(),
+				DriverManager.getInstance(BrowserFactory.getInstance(FrameworkSettings.getInstance().getDriverTypes(), -1)).getWebDriver(),
 				"Test_failed_" + result.getName(), CommonConstants.RESIZE_FACTOR);
 	}
 

@@ -9,7 +9,7 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
-import com.selenium.driver.DriverType;
+import com.selenium.driver.DriverTypes;
 import com.selenium.driver.factory.WebDriverFactory;
 import com.selenium.driver.factory.impl.FirefoxDriverFactory;
 import com.selenium.driver.factory.impl.chrome.ChromeDriverFactory;
@@ -24,7 +24,7 @@ public class LocalBrowserFactory {
 
 	private static final Logger LOGGER = Logger.getLogger(LocalBrowserFactory.class);
 
-	public static synchronized WebDriverFactory createLocalFactory(DriverType driverType, int port) {
+	public static synchronized WebDriverFactory createLocalFactory(DriverTypes driverTypes, int port) {
 
 		DesiredCapabilities caps = new DesiredCapabilities();
 
@@ -37,19 +37,19 @@ public class LocalBrowserFactory {
 			}
 		}
 
-		switch (driverType) {
-		case FIREFOX:
+		switch (driverTypes.getDriverType()) {
+		case "firefox":
 			return new FirefoxDriverFactory(caps);
 
-		case CHROME:
+		case "googlechrome":
 			return new ChromeDriverFactory(caps, CHROME_DRIVER_LOCAL_PATH);
 
-		case IE:
+		case "iexplore":
 			caps.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
 			return new IEDriverFactory(caps, IE_DRIVER_LOCAL_PATH);
 
 		default:
-			throw new EnumConstantNotPresentException(DriverType.class, "There is no rules for " + driverType.getDriverType());
+			throw new EnumConstantNotPresentException(DriverTypes.class, "There is no rules for " + driverTypes.getDriverType());
 		}
 	}
 

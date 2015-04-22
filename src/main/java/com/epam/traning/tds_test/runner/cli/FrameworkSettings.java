@@ -4,63 +4,63 @@ import java.util.List;
 
 import org.testng.ISuite;
 
-import com.selenium.driver.DriverType;
+import com.selenium.driver.DriverTypes;
 
 public class FrameworkSettings {
 
-    private static FrameworkSettings browserSettings = new FrameworkSettings();
+	private static FrameworkSettings browserSettings = new FrameworkSettings();
 
-    private DriverType driverType;
+	private DriverTypes driverTypes;
 
-    private List<ISuite> suites;
+	private List<ISuite> suites;
 
-    private String version;
+	private String version;
 
-    private String appiumPort;
+	private String appiumPort;
 
-    private Boolean rerun;
+	private Boolean rerun;
 
-    public List<ISuite> getSuites() {
-	return suites;
-    }
+	public List<ISuite> getSuites() {
+		return suites;
+	}
 
-    public void setSuites(List<ISuite> suits) {
-	this.suites = suits;
-    }
+	public void setSuites(List<ISuite> suits) {
+		this.suites = suits;
+	}
 
-    public Boolean getRerun() {
-	return rerun;
-    }
+	public Boolean getRerun() {
+		return rerun;
+	}
 
-    public void setRerun(Boolean rerun) {
-	this.rerun = rerun;
-    }
+	public void setRerun(Boolean rerun) {
+		this.rerun = rerun;
+	}
 
-    public String getVersion() {
-	return version;
-    }
+	public String getVersion() {
+		return version;
+	}
 
-    public void setVersion(String version) {
-	this.version = version;
-    }
+	public void setVersion(String version) {
+		this.version = version;
+	}
 
-    public static FrameworkSettings getInstance() {
-	return browserSettings;
-    }
+	public static FrameworkSettings getInstance() {
+		return browserSettings;
+	}
 
-    public DriverType getDriverType() {
-	return driverType;
-    }
+	public DriverTypes getDriverTypes() {
+		return driverTypes;
+	}
 
-    public void setDriverType(DriverType driverType) {
-	this.driverType = driverType;
-    }
+	public void setDriverTypes(DriverTypes driverTypes) {
+		this.driverTypes = driverTypes;
+	}
 
-    public String getAppiumPort() {
-	return appiumPort;
-    }
+	public String getAppiumPort() {
+		return appiumPort;
+	}
 
-    public void setAppiumPort(String appiumPort) {
-	this.appiumPort = appiumPort;
-    }
+	public void setAppiumPort(String appiumPort) {
+		this.appiumPort = appiumPort;
+	}
 }
