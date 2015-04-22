@@ -1,5 +1,6 @@
-package com.epam.traning.tds_test.pages.yandex_elements;
+package com.epam.traning.tds_test.pages.blocks;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.support.FindBy;
 
 import ru.yandex.qatools.htmlelements.annotations.Block;
@@ -10,6 +11,8 @@ import ru.yandex.qatools.htmlelements.element.Link;
 
 @Block(@FindBy(id = "header"))
 public class CommonPanelBlock extends HtmlElement {
+
+	private static Logger LOG = Logger.getLogger(CommonPanelBlock.class);
 
 	@Name("Full Episodes section")
 	@FindBy(className = " full_episodes")
@@ -49,10 +52,12 @@ public class CommonPanelBlock extends HtmlElement {
 
 	public void clickOnVideos() {
 		button_videos.click();
+		LOG.info("Pressed the 'Video' button");
 	}
 
 	public void clickOnWatchNow() {
 		button_watch_now.click();
+		LOG.info("Pressed the 'Watch Now' button");
 	}
 
 	public void clickOnMainPageLink() {

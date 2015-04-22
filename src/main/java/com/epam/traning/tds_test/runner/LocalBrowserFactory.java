@@ -5,28 +5,26 @@ import java.net.UnknownHostException;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.Proxy;
+import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import com.selenium.driver.DriverType;
 import com.selenium.driver.factory.WebDriverFactory;
 import com.selenium.driver.factory.impl.FirefoxDriverFactory;
-import com.selenium.driver.factory.impl.SafariDriverFactory;
 import com.selenium.driver.factory.impl.chrome.ChromeDriverFactory;
 import com.selenium.driver.factory.impl.ie.IEDriverFactory;
 import com.thoughtworks.selenium.SeleniumException;
 
 public class LocalBrowserFactory {
 
-	private static final String CHROME_DRIVER_LOCAL_PATH = "exec/chrome/";
+	private static final String CHROME_DRIVER_LOCAL_PATH = "exec/chrome/chromedriver.exe";
 
 	private static final String IE_DRIVER_LOCAL_PATH = "exec/ie/IEDriverServer.exe";
 
-	private static final Logger LOGGER = Logger
-			.getLogger(LocalBrowserFactory.class);
+	private static final Logger LOGGER = Logger.getLogger(LocalBrowserFactory.class);
 
-	public static synchronized WebDriverFactory createLocalFactory(
-			DriverType driverType, int port) {
+	public static synchronized WebDriverFactory createLocalFactory(DriverType driverType, int port) {
 
 		DesiredCapabilities caps = new DesiredCapabilities();
 
@@ -46,15 +44,12 @@ public class LocalBrowserFactory {
 		case CHROME:
 			return new ChromeDriverFactory(caps, CHROME_DRIVER_LOCAL_PATH);
 
-		case SAFARI:
-			return new SafariDriverFactory(caps);
-
 		case IE:
+			caps.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
 			return new IEDriverFactory(caps, IE_DRIVER_LOCAL_PATH);
 
 		default:
-			throw new EnumConstantNotPresentException(DriverType.class,
-					"There is no rules for " + driverType.getDriverType());
+			throw new EnumConstantNotPresentException(DriverType.class, "There is no rules for " + driverType.getDriverType());
 		}
 	}
 
@@ -65,12 +60,10 @@ public class LocalBrowserFactory {
 	 * @return proxy
 	 * @throws UnknownHostException
 	 */
-	private static synchronized Proxy seleniumProxy(int port)
-			throws UnknownHostException {
+	private static synchronized Proxy seleniumProxy(int port) throws UnknownHostException {
 		Proxy proxy = new Proxy();
 		proxy.setProxyType(Proxy.ProxyType.MANUAL);
-		String proxyStr = String.format("%s:%d", InetAddress.getLocalHost()
-				.getCanonicalHostName(), port);
+		String proxyStr = String.format("%s:%d", InetAddress.getLocalHost().getCanonicalHostName(), port);
 		proxy.setHttpProxy(proxyStr);
 		proxy.setSslProxy(proxyStr);
 

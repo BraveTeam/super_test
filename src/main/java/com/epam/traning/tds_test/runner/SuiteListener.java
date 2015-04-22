@@ -1,8 +1,6 @@
 package com.epam.traning.tds_test.runner;
 
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 
 import org.apache.log4j.Logger;
 import org.testng.IConfigurationListener;
@@ -18,34 +16,21 @@ import com.epam.traning.tds_test.constants.CommonConstants;
 import com.epam.traning.tds_test.runner.cli.FrameworkSettings;
 import com.selenium.driver.DriverManager;
 import com.selenium.utils.ScreenshotUtils;
-import com.utils.http.sauce.SauceRest;
 
-public class SuiteListener implements ISuiteListener, ITestListener,
-		IConfigurationListener {
+public class SuiteListener implements ISuiteListener, ITestListener, IConfigurationListener {
 
 	private static final Logger LOGGER = Logger.getLogger(SuiteListener.class);
-
-	private SauceRest client = null;
-
-	private String jobId;
-
-	private static Set<Boolean> buildResults = new HashSet<Boolean>();
 
 	@Override
 	public void onTestFailure(ITestResult result) {
 		ScreenshotUtils.takeResizedScreenshot(
-				DriverManager.getInstance(
-						BrowserFactory.getInstance(FrameworkSettings
-								.getInstance().getDriverType(), -1))
-						.getWebDriver(), "Test_failed_" + result.getName(),
-				CommonConstants.RESIZE_FACTOR);
+				DriverManager.getInstance(BrowserFactory.getInstance(FrameworkSettings.getInstance().getDriverType(), -1)).getWebDriver(),
+				"Test_failed_" + result.getName(), CommonConstants.RESIZE_FACTOR);
 	}
 
 	@Override
 	public void onTestStart(ITestResult result) {
-		LOGGER.info("================================== TEST "
-				+ result.getName()
-				+ " STARTED ==================================");
+		LOGGER.info("================================== TEST " + result.getName() + " STARTED ==================================");
 	}
 
 	@Override
@@ -93,31 +78,24 @@ public class SuiteListener implements ISuiteListener, ITestListener,
 			skippedConfigs = res.getTestContext().getSkippedConfigurations();
 			skippedTests = res.getTestContext().getSkippedTests();
 
-			if (failedConfigs.size() != 0 || failedTests.size() != 0
-					|| skippedConfigs.size() != 0 || skippedTests.size() != 0) {
+			if (failedConfigs.size() != 0 || failedTests.size() != 0 || skippedConfigs.size() != 0 || skippedTests.size() != 0) {
 				isFailed = true;
-				if (client != null)
-					client.jobFailed(jobId);
 				break;
 			}
 		}
 
-		buildResults.add(isFailed);
-		if (buildResults.contains(true)) {
-			BuildResult.setExitResult(BuildResult.FAILED);
+		if (isFailed) {
+			LOGGER.info("================================== SUITE " + suite.getName().toUpperCase()
+					+ " FAILED ==================================");
 		} else {
-			if (client != null)
-				client.jobPassed(jobId);
-			BuildResult.setExitResult(BuildResult.SUCCESS);
+			LOGGER.info("================================== SUITE " + suite.getName().toUpperCase()
+					+ " PASSED ==================================");
 		}
 
 	}
 
 	@Override
 	public void onStart(ITestContext context) {
-		LOGGER.info("================================== TEST "
-				+ context.getName().toUpperCase()
-				+ " STARTED ==================================");
 	}
 
 	@Override

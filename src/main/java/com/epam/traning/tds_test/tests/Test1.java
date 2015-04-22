@@ -6,6 +6,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import com.epam.traning.tds_test.constants.CommonConstants;
 import com.epam.traning.tds_test.guice.module.ProxiedDriverModule;
 import com.epam.traning.tds_test.pages.MainPage;
 import com.epam.traning.tds_test.pages.VideoPage;
@@ -18,42 +19,42 @@ import com.selenium.driver.DriverManager;
 @Modules(modules = { ProxiedDriverModule.class })
 public class Test1 {
 
-    private static Logger LOG = Logger.getLogger(Test1.class);
-    private VideoPage videoPage;
+	private static Logger LOG = Logger.getLogger(Test1.class);
 
-    @Inject
-    DriverManager driverManager;
+	private VideoPage videoPage;
 
-    @Inject
-    protected WebDriver driver;
+	@Inject
+	DriverManager driverManager;
 
-    @Inject
-    protected MainPage mainPage;
+	@Inject
+	protected WebDriver driver;
 
-    @BeforeClass(alwaysRun = true)
-    public void injectMembers() {
-	TestInjector.injectMembers(this);
-    }
+	@Inject
+	protected MainPage mainPage;
 
-    @BeforeClass(alwaysRun = true, dependsOnMethods = "injectMembers")
-    public void setUpTest() {
-	mainPage.openPage();
-	DriverUtils.waitForPageLoad(driver);
-    }
+	@BeforeClass(alwaysRun = true)
+	public void injectMembers() {
+		TestInjector.injectMembers(this);
+	}
 
-    @Test
-    public void CheckExistingOfVideoBlock() {
-	videoPage = mainPage.goToVideoPage();
-	DriverUtils.waitForPageLoad(driver);
-	Assert.assertTrue(videoPage.ChekVideoBlockPresent(),
-		"VideoBlock does not exist");
-    }
+	@BeforeClass(alwaysRun = true, dependsOnMethods = "injectMembers")
+	public void setUpTest() {
+		mainPage.openPage();
+		LOG.info("Waiting for page load. Timeout=" + CommonConstants.DEFAULT_PAGE_LOAD_TIMEOUT + " sec.");
+		DriverUtils.waitForPageLoad(driver);
+	}
 
-    @Test(dependsOnMethods = "CheckExistingOfVideoBlock")
-    public void CheckEntityOfVideoBlock() {
-	videoPage.CheckVideoBlockSize();
-	Assert.assertTrue(videoPage.CheckVideoBlockSize(),
-		" Size of the VideoBlock is not equal to 3");
-    }
+	@Test
+	public void CheckExistingOfVideoBlock() {
+		videoPage = mainPage.goToVideoPage();
+		DriverUtils.waitForPageLoad(driver);
+		Assert.assertTrue(videoPage.ChekVideoBlockPresent(), "VideoBlock does not exist");
+	}
+
+	@Test(dependsOnMethods = "CheckExistingOfVideoBlock")
+	public void CheckEntityOfVideoBlock() {
+		videoPage.CheckVideoBlockSize();
+		Assert.assertTrue(videoPage.CheckVideoBlockSize(), " Size of the VideoBlock is not equal to 3");
+	}
 
 }

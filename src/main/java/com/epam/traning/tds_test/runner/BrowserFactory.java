@@ -5,17 +5,16 @@ import com.selenium.driver.factory.WebDriverFactory;
 
 public class BrowserFactory {
 
-    private static ThreadLocal<WebDriverFactory> webDriverFactory = new ThreadLocal<WebDriverFactory>();
+	private static ThreadLocal<WebDriverFactory> webDriverFactory = new ThreadLocal<WebDriverFactory>();
 
-    public static WebDriverFactory getInstance(DriverType driverType, int port) {
+	public static WebDriverFactory getInstance(DriverType driverType, int port) {
 
-	if (webDriverFactory.get() == null) {
+		if (webDriverFactory.get() == null) {
 
-	    webDriverFactory.set(LocalBrowserFactory.createLocalFactory(
-		    DriverType.FIREFOX, port));
+			webDriverFactory.set(LocalBrowserFactory.createLocalFactory(driverType, port));
 
+		}
+		return webDriverFactory.get();
 	}
-	return webDriverFactory.get();
-    }
 
 }

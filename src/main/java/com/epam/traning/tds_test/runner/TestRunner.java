@@ -9,23 +9,23 @@ import com.runner.Runner;
 
 public class TestRunner extends Runner {
 
-    public TestRunner(String[] args) {
-	super(args);
+	public TestRunner(String[] args) {
+		super(args);
 
-	@SuppressWarnings("rawtypes")
-	List<Class> listeners = new ArrayList<Class>();
-	listeners.add(SuiteListener.class);
-	// setListeners(listeners);
-    }
+		@SuppressWarnings("rawtypes")
+		List<Class> listeners = new ArrayList<Class>();
+		listeners.add(SuiteListener.class);
+		setListeners(listeners);
+	}
 
-    public void addCommandLineOptions() {
-	super.addCommandLineOptions();
-	CliParser.getCmdLineOptions().add(new DriverTypeOption());
-    }
+	public void addCommandLineOptions() {
+		super.addCommandLineOptions();
+		CliParser.getCmdLineOptions().add(new DriverTypeOption());
+	}
 
-    public static void main(String[] args) {
+	public static void main(String[] args) {
 
-	Runner tr = new TestRunner(args);
-	tr.run();
-    }
+		Runner tr = new TestRunner(args);
+		tr.run();
+	}
 }
