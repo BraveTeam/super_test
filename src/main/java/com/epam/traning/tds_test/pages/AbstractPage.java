@@ -10,6 +10,6 @@ public abstract class AbstractPage {
 		this.driver = driver;
 	}
 
-	public abstract boolean check();
+	public abstract void check();
 
 }

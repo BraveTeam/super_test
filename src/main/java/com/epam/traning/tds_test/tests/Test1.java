@@ -50,7 +50,7 @@ public class Test1 {
 	public void checkExistingOfVideoBlock() {
 		videoPage = mainPage.goToVideoPage();
 		DriverUtils.waitForPageLoad(driver);
-		Assert.assertTrue(videoPage.cheсkVideoBlockPresent(), "VideoBlock does not exist");
+		Assert.assertTrue(videoPage.checkVideoBlockPresent(), "VideoBlock does not exist");
 	}
 
 	@Test(dependsOnMethods = "checkExistingOfVideoBlock")

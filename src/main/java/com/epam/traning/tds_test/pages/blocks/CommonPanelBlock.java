@@ -14,49 +14,49 @@ public class CommonPanelBlock extends HtmlElement {
 
 	@Name("Full Episodes section")
 	@FindBy(className = " full_episodes")
-	private Element button_episodes;
+	private Element buttonEpisodes;
 
 	@Name("Videos section")
 	@FindBy(xpath = "//a[@class=' videos']")
-	private Element button_videos;
+	private Element buttonVideos;
 
 	@Name("Interviews section")
 	@FindBy(className = " extended_interviews")
-	private Element button_interviews;
+	private Element buttonInterviews;
 
 	@Name("Guests section")
 	@FindBy(className = " guests")
-	private Element button_guests;
+	private Element buttonGuests;
 
 	@Name("News Team section")
 	@FindBy(className = "  news_team")
-	private Element button_news_team;
+	private Element buttonNewsTeam;
 
 	@Name("Podcast section")
 	@FindBy(className = "  podcast")
-	private Element button_podcast;
+	private Element buttonPodcast;
 
 	@Name("Tickets section")
 	@FindBy(className = " tickets")
-	private Element button_tickets;
+	private Element buttonTickets;
 
 	@Name("GoHome section")
 	@FindBy(xpath = "//a[href='http://thedailyshow.cc.com/']")
-	private Element button_main_page;
+	private Element buttonMainPage;
 
 	@Name("Watch now Button")
 	@FindBy(xpath = "//div[@class='watch-now']")
-	private Element button_watch_now;
+	private Element buttonWatchNow;
 
 	public void clickOnVideos() {
-		button_videos.click();
+		buttonVideos.click();
 	}
 
 	public void clickOnWatchNow() {
-		button_watch_now.click();
+		buttonWatchNow.click();
 	}
 
 	public void clickOnMainPageLink() {
-		button_main_page.click();
+		buttonMainPage.click();
 	}
 }

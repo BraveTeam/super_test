@@ -36,7 +36,7 @@ public class LocalBrowserFactory {
 			}
 		}
 
-		switch (driverTypes.getDriverType()) {
+		switch ("googlechrome") {
 		case "firefox":
 			return new FirefoxDriverFactory(caps);
 

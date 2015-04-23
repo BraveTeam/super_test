@@ -58,7 +58,7 @@ public class Test2 {
 		proxyLog.clearLog();
 
 		WatchNowPage watchNowPage = mainPage.goToWatchNowPage();
-		Assert.assertTrue(watchNowPage.check(), "WatchNow Page couldn't be identified");
+
 
 		Assert.assertTrue(ProxyUtils.checkRequestIsSent(proxyLog, EXPECTED_SEND_REQUEST_URL_FRAGMENT),
 				"Expected fragment was not found in sent requests list: " + EXPECTED_SEND_REQUEST_URL_FRAGMENT);

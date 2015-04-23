@@ -1,11 +1,11 @@
 package com.epam.traning.tds_test.runner;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.clioption.CliParser;
 import com.epam.traning.tds_test.runner.cli.options.DriverTypeOption;
 import com.runner.Runner;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class TestRunner extends Runner {
 
