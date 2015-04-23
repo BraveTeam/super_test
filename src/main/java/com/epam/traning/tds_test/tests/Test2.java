@@ -12,6 +12,7 @@ import com.epam.traning.tds_test.guice.module.ProxiedDriverModule;
 import com.epam.traning.tds_test.pages.MainPage;
 import com.epam.traning.tds_test.pages.WatchNowPage;
 import com.epam.traning.tds_test.utils.DriverUtils;
+import com.epam.traning.tds_test.utils.ProxyUtils;
 import com.google.inject.Inject;
 import com.guice.TestInjector;
 import com.guice.annotation.Modules;
@@ -59,16 +60,8 @@ public class Test2 {
 		WatchNowPage watchNowPage = mainPage.goToWatchNowPage();
 		Assert.assertTrue(watchNowPage.check(), "WatchNow Page couldn't be identified");
 
-		boolean expectedUrlFragmentFound = false;
-		for (String url : proxyLog.getRequestUrls()) {
-			if (url.contains(EXPECTED_SEND_REQUEST_URL_FRAGMENT)) {
-				expectedUrlFragmentFound = true;
-				break;
-			}
-		}
-
-		Assert.assertTrue(expectedUrlFragmentFound, "Expected fragment was not found in sent requests list: "
-				+ EXPECTED_SEND_REQUEST_URL_FRAGMENT);
+		Assert.assertTrue(ProxyUtils.checkRequestIsSent(proxyLog, EXPECTED_SEND_REQUEST_URL_FRAGMENT),
+				"Expected fragment was not found in sent requests list: " + EXPECTED_SEND_REQUEST_URL_FRAGMENT);
 
 	}
 
