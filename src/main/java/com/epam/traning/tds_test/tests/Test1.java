@@ -1,5 +1,6 @@
 package com.epam.traning.tds_test.tests;
 
+import com.epam.traning.tds_test.constants.ProjectConstants;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
@@ -40,21 +41,22 @@ public class Test1 {
 	@BeforeClass(alwaysRun = true, dependsOnMethods = "injectMembers")
 	public void setUpTest() {
 		mainPage.openPage();
+		driver.navigate();
 		LOG.info("Waiting for page load. Timeout=" + CommonConstants.DEFAULT_PAGE_LOAD_TIMEOUT + " sec.");
 		DriverUtils.waitForPageLoad(driver);
 	}
 
 	@Test
-	public void CheckExistingOfVideoBlock() {
+	public void checkExistingOfVideoBlock() {
 		videoPage = mainPage.goToVideoPage();
 		DriverUtils.waitForPageLoad(driver);
-		Assert.assertTrue(videoPage.ChekVideoBlockPresent(), "VideoBlock does not exist");
+		Assert.assertTrue(videoPage.chekVideoBlockPresent(), "VideoBlock does not exist");
 	}
 
-	@Test(dependsOnMethods = "CheckExistingOfVideoBlock")
-	public void CheckEntityOfVideoBlock() {
-		videoPage.CheckVideoBlockSize();
-		Assert.assertTrue(videoPage.CheckVideoBlockSize(), " Size of the VideoBlock is not equal to 3");
+	@Test(dependsOnMethods = "checkExistingOfVideoBlock")
+	public void checkEntityOfVideoBlock() {
+		videoPage.checkVideoBlockSize();
+		Assert.assertTrue(videoPage.checkVideoBlockSize()== ProjectConstants.VIDEO_BLOCK_SIZE, " Size of the VideoBlock is not equal to 3");
 	}
 
 }

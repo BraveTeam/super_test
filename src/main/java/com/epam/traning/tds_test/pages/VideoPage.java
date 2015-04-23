@@ -1,18 +1,16 @@
 package com.epam.traning.tds_test.pages;
 
-import java.util.List;
-
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.PageFactory;
-
-import ru.yandex.qatools.htmlelements.annotations.Name;
-
 import com.epam.traning.tds_test.constants.ProjectConstants;
 import com.epam.traning.tds_test.pages.blocks.CommonPanelBlock;
 import com.epam.traning.tds_test.utils.DriverUtils;
 import com.selenium.element.Element;
 import com.selenium.loader.decorator.LoggedElementDecorator;
 import com.selenium.page.annotation.FindBy;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
+import ru.yandex.qatools.htmlelements.annotations.Name;
+
+import java.util.List;
 
 public class VideoPage extends AbstractPage {
 
@@ -40,12 +38,12 @@ public class VideoPage extends AbstractPage {
 		return driver.getCurrentUrl().equals(ProjectConstants.HOME_URL);
 	}
 
-	public boolean ChekVideoBlockPresent() {
+	public boolean chekVideoBlockPresent() {
 		return DriverUtils.isElementPresent(video_block);
 	}
 
-	public boolean CheckVideoBlockSize() {
-		return video_block_entity.size() == 3;
+	public int checkVideoBlockSize() {
+		return video_block_entity.size();
 	}
 
 	public MainPage goToMainPage() {
