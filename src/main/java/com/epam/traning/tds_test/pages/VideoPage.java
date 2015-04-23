@@ -38,7 +38,7 @@ public class VideoPage extends AbstractPage {
 		return driver.getCurrentUrl().equals(ProjectConstants.HOME_URL);
 	}
 
-	public boolean chekVideoBlockPresent() {
+	public boolean cheсkVideoBlockPresent() {
 		return DriverUtils.isElementPresent(video_block);
 	}
 

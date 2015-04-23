@@ -1,20 +1,19 @@
 package com.epam.traning.tds_test.runner;
 
-import java.net.InetAddress;
-import java.net.UnknownHostException;
-
-import org.apache.log4j.Logger;
-import org.openqa.selenium.Proxy;
-import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.remote.CapabilityType;
-import org.openqa.selenium.remote.DesiredCapabilities;
-
 import com.selenium.driver.DriverTypes;
 import com.selenium.driver.factory.WebDriverFactory;
 import com.selenium.driver.factory.impl.FirefoxDriverFactory;
 import com.selenium.driver.factory.impl.chrome.ChromeDriverFactory;
 import com.selenium.driver.factory.impl.ie.IEDriverFactory;
 import com.thoughtworks.selenium.SeleniumException;
+import org.apache.log4j.Logger;
+import org.openqa.selenium.Proxy;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.remote.CapabilityType;
+import org.openqa.selenium.remote.DesiredCapabilities;
+
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 
 public class LocalBrowserFactory {
 
@@ -51,6 +50,7 @@ public class LocalBrowserFactory {
 		default:
 			throw new EnumConstantNotPresentException(DriverTypes.class, "There is no rules for " + driverTypes.getDriverType());
 		}
+
 	}
 
 	/**
