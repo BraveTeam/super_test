@@ -27,13 +27,13 @@ public class Test2 {
 	protected static final String EXPECTED_SEND_REQUEST_URL_FRAGMENT = "http://sc.cc.com/";
 
 	@Inject
-	DriverManager driverManager;
+	private DriverManager driverManager;
 
 	@Inject
-	protected WebDriver driver;
+	private WebDriver driver;
 
 	@Inject
-	protected MainPage mainPage;
+	private MainPage mainPage;
 
 	@Inject
 	private AbstractProxy proxy;

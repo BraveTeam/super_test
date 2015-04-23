@@ -24,13 +24,13 @@ public class Test1 {
 	private VideoPage videoPage;
 
 	@Inject
-	DriverManager driverManager;
+	private DriverManager driverManager;
 
 	@Inject
-	protected WebDriver driver;
+	private WebDriver driver;
 
 	@Inject
-	protected MainPage mainPage;
+	private MainPage mainPage;
 
 	@BeforeClass(alwaysRun = true)
 	public void injectMembers() {
