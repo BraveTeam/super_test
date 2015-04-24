@@ -24,6 +24,8 @@ public class LocalBrowserFactory {
 
 	private static final Logger LOGGER = Logger.getLogger(LocalBrowserFactory.class);
 
+	private static ThreadLocal<WebDriverFactory> currWDFactory = new ThreadLocal<WebDriverFactory>();
+
 	public static synchronized WebDriverFactory createLocalFactory(DriverTypes driverTypes, int port) {
 
 		DesiredCapabilities caps = new DesiredCapabilities();
@@ -36,17 +38,23 @@ public class LocalBrowserFactory {
 				throw new SeleniumException(e.getMessage(), e);
 			}
 		}
-
+		WebDriverFactory wdf;
 		switch ("googlechrome") {
 		case "firefox":
-			return new FirefoxDriverFactory(caps, port);
+			wdf = new FirefoxDriverFactory(caps, port);
+			currWDFactory.set(wdf);
+			return wdf;
 
 		case "googlechrome":
-			return new ChromeDriverFactory(caps, CHROME_DRIVER_LOCAL_PATH, port);
+			wdf = new ChromeDriverFactory(caps, CHROME_DRIVER_LOCAL_PATH, port);
+			currWDFactory.set(wdf);
+			return wdf;
 
 		case "iexplore":
 			caps.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
-			return new IEDriverFactory(caps, IE_DRIVER_LOCAL_PATH, port);
+			wdf = new IEDriverFactory(caps, IE_DRIVER_LOCAL_PATH, port);
+			currWDFactory.set(wdf);
+			return wdf;
 
 		default:
 			throw new EnumConstantNotPresentException(DriverTypes.class, "There is no rules for " + driverTypes.getDriverType());
@@ -69,5 +77,9 @@ public class LocalBrowserFactory {
 		proxy.setSslProxy(proxyStr);
 
 		return proxy;
+	}
+
+	public static WebDriverFactory getCurrentWebDriverFactory() {
+		return currWDFactory.get();
 	}
 }

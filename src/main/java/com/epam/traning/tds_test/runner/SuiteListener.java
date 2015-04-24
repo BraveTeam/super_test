@@ -12,7 +12,9 @@ import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
+import com.epam.traning.tds_test.constants.CommonConstants;
 import com.selenium.driver.DriverManager;
+import com.utils.ScreenshotUtils;
 
 public class SuiteListener implements ISuiteListener, ITestListener, IConfigurationListener {
 
@@ -20,11 +22,10 @@ public class SuiteListener implements ISuiteListener, ITestListener, IConfigurat
 
 	@Override
 	public void onTestFailure(ITestResult result) {
-		/*
-		 * ScreenshotUtils.takeResizedScreenshot(DriverManager.getInstance(
-		 * LocalBrowserFactory.getCurrentDriverFactory()).getWebDriver(),
-		 * "Test_failed_" + result.getName(), CommonConstants.RESIZE_FACTOR);
-		 */
+
+		ScreenshotUtils.takeResizedScreenshot(DriverManager.getInstance(LocalBrowserFactory.getCurrentWebDriverFactory()).getWebDriver(),
+				"Test_failed_" + result.getName(), CommonConstants.RESIZE_FACTOR);
+
 	}
 
 	@Override

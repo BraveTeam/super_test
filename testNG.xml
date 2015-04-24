@@ -1,5 +1,5 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Suite1: Video and WatchNow" >
+<suite name="Suite1: Video and WatchNow">
 
     <test name="Video block items number check" verbose="1">
         <classes>
@@ -11,6 +11,4 @@
             <class name="com.epam.traning.tds_test.tests.Test2"/>
         </classes>
     </test>
-
-
 </suite>
