@@ -1,31 +1,24 @@
 package com.epam.traning.tds_test.pages;
 
-import com.epam.traning.tds_test.exceptions.CurrentPageDownloadException;
-import com.selenium.element.Element;
-import com.selenium.page.annotation.FindBy;
 import org.openqa.selenium.WebDriver;
-import ru.yandex.qatools.htmlelements.annotations.Name;
+import org.openqa.selenium.support.PageFactory;
+
+import com.epam.traning.tds_test.constants.ProjectConstants;
+import com.epam.traning.tds_test.exceptions.CurrentPageDownloadException;
+import com.selenium.loader.decorator.LoggedElementDecorator;
 
 public class WatchNowPage extends AbstractPage {
 
-
 	public WatchNowPage(WebDriver driver) {
 		super(driver);
-		try {
-//			check();   оставь пока так, она с чеком твой тест не ранает, не успел разобраться почему
-		}catch (CurrentPageDownloadException e){
-		}
+		PageFactory.initElements(new LoggedElementDecorator(driver), this);
+
+		if (!check())
+			throw new CurrentPageDownloadException("WatchNowPage couldn't be identified");
 	}
 
-
-	@Name("Title of WatchNowPage")
-	@FindBy(xpath = "//title[contains(text(),' Full Episode | Comedy Central')]")
-	private Element watchNowPageTitle;
-
 	@Override
-	public void check() throws CurrentPageDownloadException{
-		if(!watchNowPageTitle.isExists()){
-			throw new CurrentPageDownloadException("WatchNowPage couldn't be identified");
-		}
+	public boolean check() throws CurrentPageDownloadException {
+		return driver.getTitle().contains(ProjectConstants.WATCHNOW_PAGE_TITLE);
 	}
 }

@@ -1,37 +1,38 @@
 package com.epam.traning.tds_test.pages;
 
+import java.util.List;
+
+import org.apache.log4j.Logger;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
+
+import ru.yandex.qatools.htmlelements.annotations.Name;
+
+import com.epam.traning.tds_test.constants.CommonConstants;
+import com.epam.traning.tds_test.constants.ProjectConstants;
 import com.epam.traning.tds_test.exceptions.CurrentPageDownloadException;
 import com.epam.traning.tds_test.pages.blocks.CommonPanelBlock;
 import com.epam.traning.tds_test.utils.DriverUtils;
 import com.selenium.element.Element;
 import com.selenium.loader.decorator.LoggedElementDecorator;
 import com.selenium.page.annotation.FindBy;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.PageFactory;
-import ru.yandex.qatools.htmlelements.annotations.Name;
-
-import java.util.List;
 
 public class VideoPage extends AbstractPage {
 
+	private static Logger LOG = Logger.getLogger(VideoPage.class);
+
 	private CommonPanelBlock commonPanelBlock;
 
-
-	public VideoPage(WebDriver driver) {
+	public VideoPage(WebDriver driver, boolean openOnCreation) {
 		super(driver);
 		PageFactory.initElements(new LoggedElementDecorator(driver), this);
-		DriverUtils.waitForPageLoad(driver);
-		try {
-			check();
-		}catch (CurrentPageDownloadException e){
+
+		if (openOnCreation) {
+			openPage(ProjectConstants.VIDEO_PAGE_URL);
 		}
-
+		if (!check())
+			throw new CurrentPageDownloadException("VideoPage couldn't be identified");
 	}
-
-	@Name("Title of VideoPage")
-	@FindBy(xpath = "//title[contains(text(),'The Daily Show | Recent and Popular Videos | Comedy Central']")
-	private Element videoPageTitle;
-
 
 	@Name("Block with videos")
 	@FindBy(xpath = "//div[contains(@class,'module ent_m043')]")
@@ -46,10 +47,8 @@ public class VideoPage extends AbstractPage {
 	private List<Element> videoBlockEntity;
 
 	@Override
-	public void check() throws CurrentPageDownloadException{
-		if(!videoPageTitle.isExists()){
-			throw new CurrentPageDownloadException("VideoPage couldn't be identified");
-		}
+	public boolean check() throws CurrentPageDownloadException {
+		return driver.getTitle().contains(ProjectConstants.VIDEO_PAGE_TITLE);
 	}
 
 	public boolean checkVideoBlockPresent() {
@@ -62,11 +61,16 @@ public class VideoPage extends AbstractPage {
 
 	public MainPage goToMainPage() {
 		commonPanelBlock.clickOnMainPageLink();
-		return new MainPage(driver);
+		LOG.info("Waiting for page load. Timeout=" + CommonConstants.DEFAULT_PAGE_LOAD_TIMEOUT + " sec.");
+		DriverUtils.waitForPageLoad(driver);
+		return new MainPage(driver, false);
 	}
 
-	public void goToWachNowPage() {
+	public WatchNowPage goToWachNowPage() {
 		buttonWatchNow.click();
+		LOG.info("Waiting for page load. Timeout=" + CommonConstants.DEFAULT_PAGE_LOAD_TIMEOUT + " sec.");
+		DriverUtils.waitForPageLoad(driver);
+		return new WatchNowPage(driver);
 	}
 
 }

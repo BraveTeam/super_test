@@ -7,13 +7,11 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import com.epam.traning.tds_test.constants.CommonConstants;
 import com.epam.traning.tds_test.guice.module.ProxiedDriverModule;
 import com.epam.traning.tds_test.pages.MainPage;
-import com.epam.traning.tds_test.pages.WatchNowPage;
-import com.epam.traning.tds_test.utils.DriverUtils;
 import com.epam.traning.tds_test.utils.ProxyUtils;
 import com.google.inject.Inject;
+import com.google.inject.name.Named;
 import com.guice.TestInjector;
 import com.guice.annotation.Modules;
 import com.proxy.AbstractProxy;
@@ -28,12 +26,15 @@ public class Test2 {
 	protected static final String EXPECTED_SEND_REQUEST_URL_FRAGMENT = "http://sc.cc.com/";
 
 	@Inject
+	@Named("proxied")
 	private DriverManager driverManager;
 
 	@Inject
+	@Named("proxied")
 	private WebDriver driver;
 
 	@Inject
+	@Named("proxied")
 	private MainPage mainPage;
 
 	@Inject
@@ -44,22 +45,13 @@ public class Test2 {
 		TestInjector.injectMembers(this);
 	}
 
-	@BeforeClass(alwaysRun = true, dependsOnMethods = "injectMembers")
-	public void setUpTest() {
-		mainPage.openPage();
-		LOG.info("Waiting for page load. Timeout=" + CommonConstants.DEFAULT_PAGE_LOAD_TIMEOUT + " sec.");
-		DriverUtils.waitForPageLoad(driver);
-	}
-
 	@Test
 	public void watchNowRequest() {
 
 		ProxyLog proxyLog = proxy.getProxyLog();
 		proxyLog.clearLog();
 
-		WatchNowPage watchNowPage = mainPage.goToWatchNowPage();
-
-
+		mainPage.goToWatchNowPage();
 		Assert.assertTrue(ProxyUtils.checkRequestIsSent(proxyLog, EXPECTED_SEND_REQUEST_URL_FRAGMENT),
 				"Expected fragment was not found in sent requests list: " + EXPECTED_SEND_REQUEST_URL_FRAGMENT);
 
@@ -68,7 +60,7 @@ public class Test2 {
 	@AfterSuite()
 	public void shutdown() {
 		LOG.info("Stopping WebDriver and Proxy");
-		driverManager.quit();
+		DriverManager.quitAll();
 		proxy.stop();
 	}
 }

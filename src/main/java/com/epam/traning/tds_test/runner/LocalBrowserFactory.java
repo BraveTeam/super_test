@@ -1,19 +1,20 @@
 package com.epam.traning.tds_test.runner;
 
-import com.selenium.driver.DriverTypes;
-import com.selenium.driver.factory.WebDriverFactory;
-import com.selenium.driver.factory.impl.FirefoxDriverFactory;
-import com.selenium.driver.factory.impl.chrome.ChromeDriverFactory;
-import com.selenium.driver.factory.impl.ie.IEDriverFactory;
-import com.thoughtworks.selenium.SeleniumException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
 import org.apache.log4j.Logger;
 import org.openqa.selenium.Proxy;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
-import java.net.InetAddress;
-import java.net.UnknownHostException;
+import com.selenium.driver.DriverTypes;
+import com.selenium.driver.factory.WebDriverFactory;
+import com.selenium.driver.factory.impl.FirefoxDriverFactory;
+import com.selenium.driver.factory.impl.chrome.ChromeDriverFactory;
+import com.selenium.driver.factory.impl.ie.IEDriverFactory;
+import com.thoughtworks.selenium.SeleniumException;
 
 public class LocalBrowserFactory {
 
@@ -38,14 +39,14 @@ public class LocalBrowserFactory {
 
 		switch ("googlechrome") {
 		case "firefox":
-			return new FirefoxDriverFactory(caps);
+			return new FirefoxDriverFactory(caps, port);
 
 		case "googlechrome":
-			return new ChromeDriverFactory(caps, CHROME_DRIVER_LOCAL_PATH);
+			return new ChromeDriverFactory(caps, CHROME_DRIVER_LOCAL_PATH, port);
 
 		case "iexplore":
 			caps.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
-			return new IEDriverFactory(caps, IE_DRIVER_LOCAL_PATH);
+			return new IEDriverFactory(caps, IE_DRIVER_LOCAL_PATH, port);
 
 		default:
 			throw new EnumConstantNotPresentException(DriverTypes.class, "There is no rules for " + driverTypes.getDriverType());

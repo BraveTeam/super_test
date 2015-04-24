@@ -6,9 +6,10 @@ import org.openqa.selenium.WebDriver;
 
 import com.epam.traning.tds_test.constants.CommonConstants;
 import com.epam.traning.tds_test.pages.MainPage;
-import com.epam.traning.tds_test.runner.BrowserFactory;
+import com.epam.traning.tds_test.runner.LocalBrowserFactory;
 import com.epam.traning.tds_test.runner.cli.FrameworkSettings;
 import com.google.inject.AbstractModule;
+import com.google.inject.name.Names;
 import com.proxy.AbstractProxy;
 import com.proxy.ProxyType;
 import com.proxy.RunProxyServer;
@@ -35,16 +36,17 @@ public class ProxiedDriverModule extends AbstractModule {
 		abstractProxy = runProxyServer.getProxyServer();
 		bind(AbstractProxy.class).toInstance(abstractProxy);
 
-		driverManager = DriverManager.getInstance(BrowserFactory.getInstance(FrameworkSettings.getInstance().getDriverTypes(), port));
+		driverManager = DriverManager.getInstance(LocalBrowserFactory.createLocalFactory(FrameworkSettings.getInstance().getDriverTypes(),
+				port));
 
 		wd = driverManager.getWebDriver();
 		wd.manage().window().maximize();
 		wd.manage().timeouts().pageLoadTimeout(CommonConstants.PAGE_LOAD_WAIT, TimeUnit.SECONDS);
 		wd.manage().timeouts().implicitlyWait(CommonConstants.IMPLICIT_WAIT, TimeUnit.SECONDS);
 
-		bind(DriverManager.class).toInstance(driverManager);
-		bind(WebDriver.class).toInstance(wd);
-		bind(MainPage.class).toInstance(new MainPage(wd));
+		bind(DriverManager.class).annotatedWith(Names.named("proxied")).toInstance(driverManager);
+		bind(WebDriver.class).annotatedWith(Names.named("proxied")).toInstance(wd);
+		bind(MainPage.class).annotatedWith(Names.named("proxied")).toInstance(new MainPage(wd, true));
 
 	}
 }
