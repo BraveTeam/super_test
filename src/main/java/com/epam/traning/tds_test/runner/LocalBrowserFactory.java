@@ -39,7 +39,7 @@ public class LocalBrowserFactory {
 			}
 		}
 		WebDriverFactory wdf;
-		switch ("googlechrome") {
+		switch (driverTypes.getDriverType()) {
 		case "firefox":
 			wdf = new FirefoxDriverFactory(caps, port);
 			currWDFactory.set(wdf);
